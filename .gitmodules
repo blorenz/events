@@ -1,0 +1,9 @@
+[submodule "bootstrap"]
+	path = bootstrap
+	url = https://github.com/twitter/bootstrap.git
+[submodule "static/bootstrap"]
+	path = static/bootstrap
+	url = https://github.com/twitter/bootstrap.git
+[submodule "events/eventsapp/static/bootstrap"]
+	path = events/eventsapp/static/bootstrap
+	url = https://github.com/twitter/bootstrap.git
