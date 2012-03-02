@@ -25,26 +25,26 @@ class Location(models.Model):
     longitude = models.FloatField()
     timezone = models.ForeignKey(Timezone)
 
-class EpUser(models.Model):
+class User(models.Model):
     name = models.CharField(max_length=100)
     location = models.ForeignKey(Location)
     bio = models.CharField(max_length=300)
     profile_picture_path = models.CharField(max_length=200)
     show_rsvp = models.BooleanField()
-    created_date = models.DateField(auto_now_add=true)
-    last_updated_date = models.DateField(auto_now=true)
+    created_date = models.DateField(auto_now_add=True)
+    last_updated_date = models.DateField(auto_now=True)
 
-class EpUserOAuthDetail(models.Model):
-    token = models.CharField(max_length=150,primary_key=true)
-    ep_user = models.ForeignKey(EpUser)
+class UserOAuthDetail(models.Model):
+    token = models.CharField(max_length=150,primary_key=True)
+    user = models.ForeignKey(User)
     email_address = models.EmailField(max_length=200)
     is_default_account = models.BooleanField()
 
 class Following(models.Model):
-    ep_user = models.ForeignKey(EpUser)
-    following_ep_user = models.ForeignKey(EpUser)
+    user = models.ForeignKey(User, related_name='follower')
+    following_user = models.ForeignKey(User, related_name='leader')
 
-class EventDetail(models.Model):
+class Eventible(models.Model):
     name = models.CharField(max_length=100)
     start_time = models.DateTimeField()
     end_time = models.DateTimeField()
@@ -53,26 +53,27 @@ class EventDetail(models.Model):
     description = models.CharField(max_length=500)
     password = models.CharField(max_length=50)
     rsvp_enabled = models.BooleanField()
-    created_date = models.DateField(auto_now_add=true)
-    last_updated_date = models.DateField(auto_now=true)
+    created_date = models.DateField(auto_now_add=True)
+    last_updated_date = models.DateField(auto_now=True)
     location = models.ForeignKey(Location)
     timezone = models.ForeignKey(Timezone)
-    created_by = models.ForeignKey(EpUser)
+    created_by = models.ForeignKey(User)
 
-class EventComment(models.Model):
-    ep_user = models.ForeignKey(EpUser)
-    event = models.ForeignKey(EventDetail)
-    text = models.CharField(max_length=100)
-    created_date = models.DateField(auto_now_add=true)
-    last_updated_date = models.DateField(auto_now=true)
+#class EventComment(models.Model):
+#    user = models.ForeignKey(User)
+#    event = models.ForeignKey(Eventible)
+#    text = models.CharField(max_length=100)
+#    created_date = models.DateField(auto_now_add=True)
+#    last_updated_date = models.DateField(auto_now=True)
 
 class EventClassification(models.Model):
-    event = models.ForeignKey(EventDetail)
+    event = models.ForeignKey(Eventible)
     tag = models.ForeignKey(Tag)
 
 class AttendingEvent(models.Model):
-    ep_user = models.ForeignKey(EpUser)
-    event = models.ForeignKey(EventDetail)
+    user = models.ForeignKey(User)
+    event = models.ForeignKey(Eventible)
     will_attend = models.BooleanField()
-    created_date = models.DateField(auto_now_add=true)
-    last_updated_date = models.DateField(auto_now=true)    
+    created_date = models.DateField(auto_now_add=True)
+    last_updated_date = models.DateField(auto_now=True)    
+

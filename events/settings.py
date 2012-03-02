@@ -12,9 +12,9 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'event_planner',                      # Or path to database file if using sqlite3.
+        'NAME': 'eventibly_db',                      # Or path to database file if using sqlite3.
         'USER': 'root',                      # Not used with sqlite3.
-        'PASSWORD': 'vsd2011',                  # Not used with sqlite3.
+        'PASSWORD': 'JonChrisBrandon',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
     }
@@ -169,6 +169,7 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     'eventsapp',
     'django.contrib.admindocs',
+    'south',
     'social_auth',
     'eventsapp',
 )

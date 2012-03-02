@@ -6,5 +6,5 @@ from django.template import RequestContext
 def home(request):
     c = RequestContext(request)
     return render_to_response('eventsapp/base.html',
-                              {'entry_list': '1'},
+                              {'entry_list': 'Hi Jon!!!'},
                            context_instance=c )
